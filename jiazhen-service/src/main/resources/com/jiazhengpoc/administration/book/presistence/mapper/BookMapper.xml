@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.jiazhengpoc.administration.book.presistence.mapper.BookMapper">
+
+	<select id="findUser01" resultType="java.util.LinkedHashMap">
+		select UserId,UserName from
+		User
+	</select>
+
+
+
+	<select id="getAllBook"
+		resultType="com.jiazhengpoc.administration.book.dto.BookDto">
+		select
+		b_id,userId,p_Id,p_title,b_price,p_icon,b_state,b_date,b_time,mid,b_name,b_phone,s_id
+		from fuwuBook
+		where userId = #{userId,mode=IN,jdbcType=CHAR}
+	</select>
+
+	<delete id="deleteOneBook">
+		delete from fuwuBook where b_id =
+		#{b_id,mode=IN,jdbcType=NUMERIC}
+	</delete>
+
+    <insert id="newOneBook"
+        parameterType="com.jiazhengpoc.administration.book.dto.BookDto">
+        insert into fuwuBook
+        (userId,p_Id,p_title,b_price,p_icon,b_state,b_date,b_time,mid,b_name,b_phone,s_id)
+        values
+        (
+        #{userId,mode=IN,jdbcType=CHAR},
+        #{p_id,mode=IN,jdbcType=CHAR},
+        #{p_title,mode=IN,jdbcType=CHAR},
+        #{b_price,mode=IN,jdbcType=NUMERIC},
+        #{p_icon,mode=IN,jdbcType=CHAR},
+        #{b_state,mode=IN,jdbcType=NUMERIC},
+        #{b_date,mode=IN,jdbcType=DATE},
+        #{b_time,mode=IN,jdbcType=TIME},
+        #{mid,mode=IN,jdbcType=CHAR},
+        #{b_name,mode=IN,jdbcType=CHAR},
+        #{b_phone,mode=IN,jdbcType=CHAR},
+        #{s_id,mode=IN,jdbcType=CHAR}
+        )
+    </insert>
+
+
+</mapper>

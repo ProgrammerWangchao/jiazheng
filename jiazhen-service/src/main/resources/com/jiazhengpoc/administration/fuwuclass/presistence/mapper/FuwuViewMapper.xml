@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiazhengpoc.administration.fuwuClass.presistence.mapper.FuwuViewMapper">
+
+    <select id="findfuwuall" resultType="java.util.LinkedHashMap">
+       select fuwuGroupId,fuwuGroupName,fuwuDetailId,fuwuDetailName,fuwuDetailMiaoshu,beizhu,crateTime,updateTime 
+       from fuwuView
+    </select>
+
+    <select id="findFuwuViewByName" resultType="com.jiazhengpoc.administration.fuwuClass.dto.FuwuViewDto">
+       select fuwuGroupId,fuwuGroupName,fuwuDetailId,fuwuDetailName,fuwuDetailMiaoshu,beizhu,crateTime,updateTime 
+       from fuwuView
+       where fuwuGroupName = #{fuwuDetailDto.fuwuGroupName,mode=IN,jdbcType=CHAR}
+       and fuwuDetailName = #{fuwuDetailDto.fuwuDetailName,mode=IN,jdbcType=CHAR}
+    </select>
+
+
+</mapper>

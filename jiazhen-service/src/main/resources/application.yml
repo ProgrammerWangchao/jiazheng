@@ -1,0 +1,55 @@
+server:
+  port: 7443
+  servlet:
+    context-path: /jiazheng
+  ssl:
+    key-store: classpath:www.whl520yy.xyz.jks
+    key-store-password: 123456789
+    key-store-type: JKS
+    key-alias: www.whl520yy.xyz
+
+# =====================spring-date===========================
+spring:
+  devtools:
+    restart:
+      enabled: false  # true热部署生效, false 热部署不生效
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    #url: jdbc:mysql://127.0.0.1:3306/jiazhengdb?characterEncoding=utf8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://118.25.138.53:3306/jiazhengdb?characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: wangchao
+    password: 123456789
+    #5.6B以后的版本  5.7+
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver        #5.6
+
+# =====================Thymeleaf ===========================
+  thymeleaf:
+    enabled: true
+    cache: false #是否开启缓存，开发时可以设置为 false，默认为 true
+    check-template-location: true # 检查模板位置是否存在。
+    servlet: 
+      content-type: text/html  #Content-Type配置
+    encoding: UTF-8
+    prefix: classpath:/templates/  #模版文件位置
+    suffix: .html    #模版文件后缀
+
+# =====================logs ===========================
+logging:
+  path: ..\var\logs
+  level: 
+        com.springboottest.dao: INFO
+
+# =====================mybatis ===========================
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.jiazhengpoc
+
+# =====================o分页，pom.xml中需要引用包===========================
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

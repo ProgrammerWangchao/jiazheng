@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiazhengpoc.administration.fuwuClass.presistence.mapper.FuwuDetailMapper">
+
+    <select id="findFuwuDetailAll" resultType="java.util.LinkedHashMap">
+       select fuwuDetailId,fuwuGroupId,fuwuDetailName,fuwuDetailMiaoshu,beizhu,crateTime,updateTime from fuwuDetail
+    </select>
+
+    <select id="findFuwuDetailByName" resultType="com.jiazhengpoc.administration.fuwuClass.dto.FuwuDetailDto">
+       select fuwuDetailId,fuwuGroupId,fuwuDetailName,fuwuDetailMiaoshu,beizhu,crateTime,updateTime 
+       from fuwuDetail
+       where fuwuGroupId = #{fuwuGroupId,mode=IN,jdbcType=NUMERIC}
+       and fuwuDetailName = #{fuwuDetailName,mode=IN,jdbcType=CHAR}
+    </select>
+    
+    <insert id="insertFuwuDetail" parameterType="com.jiazhengpoc.administration.fuwuClass.dto.FuwuGroupDto">
+        insert into fuwuDetail (fuwuDetailId,fuwuGroupId,fuwuDetailName,fuwuDetailMiaoshu,beizhu,crateTime,updateTime) 
+        values(
+            #{fuwuDetail.fuwuDetailId,mode=IN,jdbcType=NUMERIC},
+            #{fuwuDetail.fuwuGroupId,mode=IN,jdbcType=NUMERIC},
+            #{fuwuDetail.fuwuDetailName,mode=IN,jdbcType=CHAR},
+            #{fuwuDetail.fuwuDetailMiaoshu,mode=IN,jdbcType=CHAR},
+            #{fuwuDetail.beizhu,mode=IN,jdbcType=CHAR},
+            #{fuwuDetail.crateTime,mode=IN,jdbcType=TIMESTAMP},
+            #{fuwuDetail.updateTime,mode=IN,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiazhengpoc.administration.fuwuClass.presistence.mapper.FuwuGroupMapper">
+
+    <select id="findFuwuGroupAll" resultType="java.util.LinkedHashMap">
+       select fuwuGroupId,fuwuGroupName,beizhu from fuwuGroup
+    </select>
+
+    <select id="findFuwuGroupByName" resultType="com.jiazhengpoc.administration.fuwuClass.dto.FuwuGroupDto">
+        select fuwuGroupId,fuwuGroupName,beizhu from fuwuGroup where fuwuGroupName = #{fuwuGroupName,mode=IN,jdbcType=CHAR}
+    </select>
+
+    <insert id="insertFuwuGroup" parameterType="com.jiazhengpoc.administration.fuwuClass.dto.FuwuGroupDto">
+        insert into fuwuGroup (fuwuGroupId,fuwuGroupName,beizhu) 
+        values(
+            #{fuwugroupDto.fuwuGroupId,mode=IN,jdbcType=NUMERIC},
+            #{fuwugroupDto.fuwuGroupName,mode=IN,jdbcType=CHAR},
+            #{fuwugroupDto.beizhu,mode=IN,jdbcType=CHAR}
+        )
+    </insert>
+</mapper>
